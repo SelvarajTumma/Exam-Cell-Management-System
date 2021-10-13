@@ -10,7 +10,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { MatTableModule } from '@angular/material/table';
 import { LoginComponent } from './login/login.component';
 import { UserViewComponent } from './user-view/user-view.component';
 import { AdminViewComponent } from './admin-view/admin-view.component';
@@ -35,7 +34,6 @@ import{MatIconModule, MatSidenavModule,MatListModule} from '@angular/material';
     MatCardModule,
     MatButtonModule,
     MatInputModule,    
-    MatTableModule,
     HttpClientModule,
     MatIconModule,
     MatSidenavModule,

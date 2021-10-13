@@ -24,22 +24,26 @@ export class LoginComponent implements OnInit {
     console.log(this.LoginForm.value);
     console.log(this.LoginForm.value.username,this.LoginForm.value.password);
     this.examsystem.login(this.LoginForm.value).subscribe(
-      (err)=>{
-       console.log(err);
-      },
       (res:any)=>{
         console.log(res);
-       if(res.error_code==-1){
+        console.log(res.messege);
+        console.log("working");
+       if(res.messege=="Invalid"){
          this.invalid=true;
        }
        else{
-         if(res.resp_code=1 && res.resp_type=="user"){
-           this.router.navigate["/user"];
+         if(res.messege=="User"){
+           console.log("called user");
+           this.router.navigate(["/user"]);
          }
-         if(res.resp_code=1 && res.resp_type=="admin"){
-           this.router.navigate["/admin"];
+         if(res.messege=="Admin"){
+           this.router.navigate(["/admin"]);
+           console.log("called admin");
          }
        }
+      },
+      (err)=>{
+        console.log(err);
       }
     )
     
