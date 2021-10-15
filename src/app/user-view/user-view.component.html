@@ -2,10 +2,11 @@
     <mat-toolbar-row>
             <h1>NARASARAOPETA ENGINEERING COLLEGE</h1>
       <div>
-        <a mat-button [routerLink]="">Student Information</a>
-        <a mat-button [routerLink]="">Pay Exam Fee</a>
-        <a mat-button [routerLink]="'/user'">Generate Hallticket</a>
-        <a mat-button [routerLink]="'/admin'">Marks Details</a>
+        <a mat-button [routerLink]="['StudInfo']">Student Information</a>
+        <a mat-button [routerLink]="['payFee']">Pay Exam Fee</a>
+        <a mat-button [routerLink]="['GHticket']">Generate Hallticket</a>
+        <a mat-button [routerLink]="['Marks']">Marks Details</a>
+        <a mat-Button routerLink="/Login">Logout</a>
       </div>
       <button mat-icon-button>
         <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
@@ -15,14 +16,16 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav md-disable-backdrop>
     <mat-nav-list>
-      <a mat-button [routerLink]="">Student Information</a><br>
-      <a mat-button [routerLink]="">Pay Exam Fee</a><br>
-      <a mat-button [routerLink]="''">Generate Hallticket</a><br>
-      <a mat-button [routerLink]="''">Marks Details</a><br>
+      <a mat-button [routerLink]="['StudInfo']">Student Information</a><br>
+      <a mat-button [routerLink]="['payFee']">Pay Exam Fee</a><br>
+      <a mat-button [routerLink]="['GHticket']">Generate Hallticket</a><br>
+      <a mat-button [routerLink]="['Marks']">Marks Details</a><br>
+      <a mat-button routerLink="/Login">Logout</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div style="height: 22vh; width: fit-content;">
+    <div style="height: 90vh;">
+      <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

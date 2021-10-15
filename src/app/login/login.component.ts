@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ExamSystemService } from '../exam-system.service';
 import { Router } from '@angular/router';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
+import { TokenService } from '../token.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,13 +11,13 @@ import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
   invalid=false;
   LoginForm:FormGroup;
-  constructor(private examsystem:ExamSystemService,private router:Router,formBuilder:FormBuilder){ 
+  constructor(private examsystem:ExamSystemService,private router:Router,formBuilder:FormBuilder,
+    private tokenService:TokenService){ 
     this.LoginForm=formBuilder.group({
       username:['',Validators.required],
       password:['',Validators.required]
     });
   }
-
   ngOnInit() {
   }
   Submit(){
@@ -32,22 +33,23 @@ export class LoginComponent implements OnInit {
          this.invalid=true;
        }
        else{
+         
          if(res.messege=="User"){
            console.log("called user");
+           this.tokenService.saveToken({token:res.value,role:"User"});
            this.router.navigate(["/user"]);
-         }
+          }
          if(res.messege=="Admin"){
            this.router.navigate(["/admin"]);
+           this.tokenService.saveToken({});
            console.log("called admin");
-         }
+          }
        }
       },
       (err)=>{
         console.log(err);
       }
     )
-    
-    
   }
 
 }

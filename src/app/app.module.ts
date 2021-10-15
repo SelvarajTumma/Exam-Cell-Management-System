@@ -16,13 +16,21 @@ import { AdminViewComponent } from './admin-view/admin-view.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UpdateLoginDetailsComponent } from './update-login-details/update-login-details.component';
 import{MatIconModule, MatSidenavModule,MatListModule} from '@angular/material';
+import { StudentInfoComponent } from './student-info/student-info.component';
+import { GenerateHallticketComponent } from './generate-hallticket/generate-hallticket.component';
+import { PayFeeComponent } from './pay-fee/pay-fee.component';
+import { MarksComponent } from './marks/marks.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     UserViewComponent,
     AdminViewComponent,
-    UpdateLoginDetailsComponent
+    UpdateLoginDetailsComponent,
+    StudentInfoComponent,
+    GenerateHallticketComponent,
+    PayFeeComponent,
+    MarksComponent
   ],
   imports: [
     BrowserModule,
