@@ -1,2 +1,10 @@
-<p>student-info works!</p>
-<h1>Hello world</h1>
+<mat-card>
+    <mat-card-title color=" accent">Student Details</mat-card-title>
+    <mat-card-content>
+        <h4>Student Roll no:{{details.S_no}}</h4>
+        <h4>Student Name:{{details.S_name}}</h4>
+        <h4>Regulation:{{details.Regulation}}</h4>
+        <h4>Department:{{details?.Dept}}</h4>
+        <h4>Address:{{details.Address[0].Dno}},{{details.Address[1].Street}},{{details.Address[2].City}},{{details.Address[3].district}},{{details.Address[4].State}}</h4>
+    </mat-card-content>
+</mat-card>

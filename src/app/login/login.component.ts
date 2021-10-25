@@ -36,12 +36,11 @@ export class LoginComponent implements OnInit {
          
          if(res.messege=="User"){
            console.log("called user");
-           this.tokenService.saveToken({token:res.value,role:"User"});
+           this.tokenService.saveUser({username:res.username,role:"User"});
            this.router.navigate(["/user"]);
           }
          if(res.messege=="Admin"){
            this.router.navigate(["/admin"]);
-           this.tokenService.saveToken({});
            console.log("called admin");
           }
        }

@@ -18,4 +18,7 @@ export class ExamSystemService {
   getall(){
     return this.http.get(baseurl);
   }
+  getStudentDetails(username:string){
+    return this.http.get(baseurl+`/StudentData/${username}`);
+  }
 }
