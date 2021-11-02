@@ -7,6 +7,7 @@ import { StudentInfoComponent } from './student-info/student-info.component';
 import { GenerateHallticketComponent } from './generate-hallticket/generate-hallticket.component';
 import { MarksComponent } from './marks/marks.component';
 import { PayFeeComponent } from './pay-fee/pay-fee.component';
+import { AuthService } from './auth.service';
 const routes: Routes = [
   {path:"",pathMatch:"full",component:LoginComponent},
   {path:"login",component:LoginComponent},
@@ -16,7 +17,7 @@ const routes: Routes = [
     {path:"Marks",component:MarksComponent},
     {path:"payFee",component:PayFeeComponent},
     { path: '', component:StudentInfoComponent, pathMatch: 'full'}
-  ]},
+  ],canActivate:[AuthService]},
   {path:"admin",component:AdminViewComponent},
   
 ];

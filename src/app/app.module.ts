@@ -30,7 +30,7 @@ import { MarksComponent } from './marks/marks.component';
     StudentInfoComponent,
     GenerateHallticketComponent,
     PayFeeComponent,
-    MarksComponent
+    MarksComponent,
   ],
   imports: [
     BrowserModule,

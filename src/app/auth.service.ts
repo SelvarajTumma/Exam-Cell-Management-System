@@ -1,28 +1,27 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router,CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree} from '@angular/router';
+import { Observable } from 'rxjs';
+import { TokenService } from './token.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
-  private userLoggedIn:BehaviorSubject<boolean> =new BehaviorSubject<boolean>(false);
-  private adminloggedIn:BehaviorSubject<boolean>=new BehaviorSubject<boolean>(false);
-  constructor(private router:Router) { }
-  getUserLoggedIn(){
-    return this.userLoggedIn.asObservable;
+export class AuthService implements CanActivate{
+  constructor(private auth:TokenService,private router:Router,private autho:AuthService) { }
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+      if (!this.auth.isAuthenticated()) {
+        this.router.navigate(['login']);
+        return false;
+      }
+      return true; 
   }
-  loginUser(user){
-    this.userLoggedIn.next(true);
+
   }
-  loginAdmin(admin){
-    this.adminloggedIn.next(true);
-  }
-  userLogout(){
-    this.userLoggedIn.next(false);
-    this.router.navigate(["/login"]);
-  }
-  adminLogout(){
-    this.adminloggedIn.next(false);
-    this.router.navigate(["/login"]);
-  }
-}
+  // canActivate(): boolean {
+  //   if (!this.auth.isAuthenticated()) {
+  //     this.router.navigate(['login']);
+  //     return false;
+  //   }
+  //   return true;
+  // }
+
+  

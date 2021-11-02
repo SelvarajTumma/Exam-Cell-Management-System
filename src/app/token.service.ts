@@ -25,4 +25,7 @@ export class TokenService {
     console.log(JSON.parse(sessionStorage.getItem(user_token)));
     return JSON.parse(sessionStorage.getItem(user_token));
   }
+  public isAuthenticated(){
+    return this.getToken()!=null;
+  }
 }
