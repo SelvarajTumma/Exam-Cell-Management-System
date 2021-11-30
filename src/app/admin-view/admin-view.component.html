@@ -1,3 +1,31 @@
-<h1>
-    Hello world
-</h1>
+<mat-toolbar color="accent">
+    <mat-toolbar-row>
+        <h1>Narasaraopeta </h1>
+        <span class="spacer"></span>
+        <div class="contents">
+            <button mat-button [routerLink]="['/home']"="">Home</button>
+            <button mat-button[routerLink]=""="['/student']">Student</button>  
+            <button mat-button[routerLink]="['/home']"="/admin-view/admin-faculty">Faculty</button>
+        </div>
+        <span class="spacer"></span>
+        <button mat-button>
+            <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav md-disable-backdrop>
+      <mat-nav-list class="row">
+        <button mat-button[routerLink]="['/home']>Home</button>
+          <button mat-button [routerLink]=['/student']">Student</button>  
+          <button mat-button[routerLink]="['/home']">Faculty</button>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div style="height: 90vh;">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+

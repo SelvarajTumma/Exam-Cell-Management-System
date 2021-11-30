@@ -8,6 +8,7 @@ import { GenerateHallticketComponent } from './generate-hallticket/generate-hall
 import { MarksComponent } from './marks/marks.component';
 import { PayFeeComponent } from './pay-fee/pay-fee.component';
 import { AuthService } from './auth.service';
+import { TimetableComponent } from './timetable/timetable.component';
 const routes: Routes = [
   {path:"",pathMatch:"full",component:LoginComponent},
   {path:"login",component:LoginComponent},
@@ -18,7 +19,10 @@ const routes: Routes = [
     {path:"payFee",component:PayFeeComponent},
     { path: '', component:StudentInfoComponent, pathMatch: 'full'}
   ],canActivate:[AuthService]},
-  {path:"admin",component:AdminViewComponent},
+  {path:"admin",component:AdminViewComponent,children:[
+    {path:"",component:TimetableComponent,pathMatch:"full"},
+    {path:"Home",component:TimetableComponent}
+  ]},
   
 ];
 

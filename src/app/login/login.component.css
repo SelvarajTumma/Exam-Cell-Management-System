@@ -10,3 +10,6 @@ mat-card {
    mat-label{
     float: right;
   }
+ .captcha button{
+   margin-right: 15px;
+ }

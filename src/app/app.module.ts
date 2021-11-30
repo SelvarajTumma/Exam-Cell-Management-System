@@ -20,6 +20,8 @@ import { StudentInfoComponent } from './student-info/student-info.component';
 import { GenerateHallticketComponent } from './generate-hallticket/generate-hallticket.component';
 import { PayFeeComponent } from './pay-fee/pay-fee.component';
 import { MarksComponent } from './marks/marks.component';
+import { TimetableComponent } from './timetable/timetable.component';
+import {MatSelectModule,MatOptionModule} from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +33,7 @@ import { MarksComponent } from './marks/marks.component';
     GenerateHallticketComponent,
     PayFeeComponent,
     MarksComponent,
+    TimetableComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,9 @@ import { MarksComponent } from './marks/marks.component';
     HttpClientModule,
     MatIconModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatSelectModule,    
+    MatOptionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

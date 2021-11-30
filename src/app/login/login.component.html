@@ -15,9 +15,20 @@
                     Enter a valid password
                 </mat-error>
             </mat-form-field>
-            <mat-label color="warn" *ngIf="ivalid">
-                <button routerLink="/update">forgot username?</button>
-            </mat-label>
+            <div class="captcha">
+                <button mat-raised-button color="primary" class="right" >{{first}}</button>
+                <button mat-raised-button color="primary" class="center">{{operator}}</button>
+                <button mat-raised-button  color="primary"class="left">{{second}}</button>
+            </div><br>
+            <mat-form-field class="full-width-input">
+                <input matInput placeholder="Enter the answer for the above caluclation" formControlName="captcha" type="text">
+                <mat-error *ngIf="invalidCaptcha">
+                    Enter a valid captcha
+                </mat-error>
+            </mat-form-field>
+            
+                <button  mat-button-raised color="warn" *ngIf="invalid">forgot username?</button>
+
             
                 <button mat-raised-button color="primary" type="submit">
                     Login

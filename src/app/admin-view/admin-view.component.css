@@ -1,0 +1,12 @@
+.row{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    margin: 20px;
+}
+.row button{
+    margin: 3px;
+}
+.spacer{
+    flex:1 1 auto;
+}

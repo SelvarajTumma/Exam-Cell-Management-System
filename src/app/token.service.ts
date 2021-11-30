@@ -10,13 +10,13 @@ export class TokenService {
   signOut(){
     window.sessionStorage.clear();
   }
-  public saveToken(details:any){
-    window.sessionStorage.removeItem(token);
-    window.sessionStorage.setItem(token,details);
-  }
-  public getToken(){
-    return sessionStorage.getItem(token);
-  }
+  // public saveToken(details:any){
+  //   window.sessionStorage.removeItem(token);
+  //   window.sessionStorage.setItem(token,details);
+  // }
+  // public getToken(){
+  //   return window.sessionStorage.getItem(token);
+  // }
   public saveUser(user){
     window.sessionStorage.removeItem(user_token);
     window.sessionStorage.setItem(user_token,JSON.stringify(user))    
@@ -26,6 +26,7 @@ export class TokenService {
     return JSON.parse(sessionStorage.getItem(user_token));
   }
   public isAuthenticated(){
-    return this.getToken()!=null;
+    var value=window.sessionStorage.getItem(user_token);
+    return value;
   }
 }

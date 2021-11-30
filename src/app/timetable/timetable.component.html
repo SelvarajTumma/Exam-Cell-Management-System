@@ -1,0 +1,19 @@
+<form>
+    <mat-form-field >
+        <mat-label>Regualtion</mat-label>
+        <mat-select >
+            <mat-option [value]="R19">
+                R19
+            </mat-option>
+            <mat-option [value]="R20">
+                R20
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Semester</mat-label>
+        <mat-select>
+            <mat-option *ngFor="let item of semester" [value]="item">{{item}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+</form>
