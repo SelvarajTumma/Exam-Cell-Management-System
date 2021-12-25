@@ -2,37 +2,34 @@
     <mat-card-content>
         <form [formGroup]="LoginForm" (ngSubmit)="Submit()">
             <h2>Login</h2>
-            <mat-error *ngIf="invalid">The Username and the password are incoorect</mat-error>
+            <mat-card *ngIf="invalid" class="validity"><h3>The Username or the password are incoorect</h3></mat-card>
             <mat-form-field class="full-width-input">
                 <input matInput placeholder="Enter username" formControlName="username">
                 <mat-error>
-                    Enter a valid username
+                    Enter a valid Username
                 </mat-error>
             </mat-form-field>
             <mat-form-field class="full-width-input">
                 <input matInput placeholder="Enter password" formControlName="password" type="password" >
                 <mat-error >
-                    Enter a valid password
+                    Enter a valid Password
                 </mat-error>
             </mat-form-field>
             <div class="captcha">
-                <button mat-raised-button color="primary" class="right" >{{first}}</button>
-                <button mat-raised-button color="primary" class="center">{{operator}}</button>
-                <button mat-raised-button  color="primary"class="left">{{second}}</button>
+                <button mat-raised-button color="accent" class="right" >{{first}}</button>
+                <button mat-raised-button color="accent" class="center">{{operator}}</button>
+                <button mat-raised-button  color="accent"class="left">{{second}}</button>
+                <button mat-raised-button color="primary" (click)="captcha()" type="button"><mat-icon>refresh</mat-icon></button>
             </div><br>
             <mat-form-field class="full-width-input">
                 <input matInput placeholder="Enter the answer for the above caluclation" formControlName="captcha" type="text">
-                <mat-error *ngIf="invalidCaptcha">
+                <mat-error>
                     Enter a valid captcha
                 </mat-error>
             </mat-form-field>
-            
-                <button  mat-button-raised color="warn" *ngIf="invalid">forgot username?</button>
-
-            
-                <button mat-raised-button color="primary" type="submit">
-                    Login
-                </button>
+            <p *ngIf="invalidCaptcha" class="invalidcaptcha">Enter the correct captcha</p><br>
+            <button mat-raised-button color="primary" type="submit">Login</button>
+            <button mat-raised-button color="warn" *ngIf="invalid" class="forgetpwd">Forget password?</button>
         </form>
     </mat-card-content>
 </mat-card>

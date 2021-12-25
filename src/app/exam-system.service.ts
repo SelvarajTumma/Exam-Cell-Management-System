@@ -21,4 +21,10 @@ export class ExamSystemService {
   getStudentDetails(username:string){
     return this.http.get(baseurl+`/StudentData/${username}`);
   }
+  getsubjects(data){
+    return this.http.post(baseurl+`/getSubjects`,{data});
+  }
+  set_timetable(timetable){
+    return this.http.post(baseurl+`/set_timetable`,{year:timetable.year,month:timetable.month,subjects:timetable.subjects.subjectsArray});
+  }
 }

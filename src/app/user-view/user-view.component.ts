@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { TokenService } from '../token.service';
 @Component({
   selector: 'app-user-view',
   templateUrl: './user-view.component.html',
@@ -7,12 +7,12 @@ import { Router } from '@angular/router';
 })
 export class UserViewComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private tokenservice:TokenService) { }
 
   ngOnInit() {
   }
   Logout(){
     console.log("clicked");
-    this.router.navigate(["login"]);
-  }
+    this.tokenservice.signOut();
+  } 
 }

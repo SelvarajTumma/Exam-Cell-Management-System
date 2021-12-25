@@ -3,9 +3,14 @@
         <h1>Narasaraopeta </h1>
         <span class="spacer"></span>
         <div class="contents">
-            <button mat-button [routerLink]="['/home']"="">Home</button>
+            <!-- <button mat-button [routerLink]="['/home']"="">Home</button>
             <button mat-button[routerLink]=""="['/student']">Student</button>  
-            <button mat-button[routerLink]="['/home']"="/admin-view/admin-faculty">Faculty</button>
+            <button mat-button[routerLink]="['/home']"="/admin-view/admin-faculty">Faculty</button> -->
+            <a mat-button [routerLink]="['StudInfo']">Student Information</a>
+            <a mat-button [routerLink]="['payFee']">Pay Exam Fee</a>
+            <a mat-button [routerLink]="['GHticket']">Generate Hallticket</a>
+            <a mat-button [routerLink]="['Marks']">Marks Details</a>
+            <a mat-button (click)="Logout()" href="/login">Logout</a><br>
         </div>
         <span class="spacer"></span>
         <button mat-button>
@@ -17,9 +22,14 @@
 <mat-sidenav-container>
     <mat-sidenav #sidenav md-disable-backdrop>
       <mat-nav-list class="row">
-        <button mat-button[routerLink]="['/home']>Home</button>
+          <!-- <button mat-button [routerLink]="['/home']>Home</button>
           <button mat-button [routerLink]=['/student']">Student</button>  
-          <button mat-button[routerLink]="['/home']">Faculty</button>
+          <button mat-button[routerLink]="['/home']">Faculty</button> -->
+          <a mat-button [routerLink]="['StudInfo']">Student Information</a>
+          <a mat-button [routerLink]="['payFee']">Pay Exam Fee</a>
+          <a mat-button [routerLink]="['GHticket']">Generate Hallticket</a>
+          <a mat-button [routerLink]="['Marks']">Marks Details</a>
+          <a mat-button (click)="Logout()" href="/login">Logout</a><br>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>

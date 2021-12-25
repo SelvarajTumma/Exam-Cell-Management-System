@@ -13,3 +13,16 @@ mat-card {
  .captcha button{
    margin-right: 15px;
  }
+ .forgetpwd{
+   float: right;
+ }
+ .validity{
+   color: white;
+   background-color: red;
+   overflow: hidden;
+ }
+ .invalidcaptcha{
+   float: center;
+   color: red;
+   font-size: 10px;
+ }

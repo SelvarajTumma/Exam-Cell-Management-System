@@ -19,7 +19,7 @@ const routes: Routes = [
     {path:"payFee",component:PayFeeComponent},
     { path: '', component:StudentInfoComponent, pathMatch: 'full'}
   ],canActivate:[AuthService]},
-  {path:"admin",component:AdminViewComponent,children:[
+  {path:"Admin",component:AdminViewComponent,children:[
     {path:"",component:TimetableComponent,pathMatch:"full"},
     {path:"Home",component:TimetableComponent}
   ]},

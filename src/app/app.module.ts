@@ -21,7 +21,8 @@ import { GenerateHallticketComponent } from './generate-hallticket/generate-hall
 import { PayFeeComponent } from './pay-fee/pay-fee.component';
 import { MarksComponent } from './marks/marks.component';
 import { TimetableComponent } from './timetable/timetable.component';
-import {MatSelectModule,MatOptionModule} from '@angular/material';
+import {MatSelectModule,MatOptionModule,MatFormFieldModule} from '@angular/material';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,7 @@ import {MatSelectModule,MatOptionModule} from '@angular/material';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
     MatToolbarModule,
     MatCardModule,
     MatButtonModule,
@@ -50,7 +51,9 @@ import {MatSelectModule,MatOptionModule} from '@angular/material';
     MatSidenavModule,
     MatListModule,
     MatSelectModule,    
-    MatOptionModule
+    MatOptionModule,
+    MatFormFieldModule,
+    NgMultiSelectDropDownModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -24,39 +24,24 @@ export class LoginComponent implements OnInit {
     });
   }
   ngOnInit() {
-    this.first=Math.floor(Math.random() * (25 + 1));
-    this.operator=String(this.operations[Math.floor(Math.random() * this.operations.length)]);
-    this.second=Math.floor(Math.random() * (10 + 1));
-    console.log(this.first,this.operator,this.second);
+    this.captcha();
   }
   Submit(){
-    
-    console.log(eval(this.first+this.operator+this.second));
-    console.log(this.LoginForm.value.captcha);
+    console.log("called");  
     if(this.LoginForm.value.captcha==eval(this.first+this.operator+this.second)){
-      console.log("called");
-      console.log(this.LoginForm.value);
-      console.log(this.LoginForm.value.username,this.LoginForm.value.password);
       this.examsystem.login(this.LoginForm.value).subscribe(
         (res:any)=>{
           console.log(res);
-          console.log(res.messege);
-          console.log("working");
          if(res.messege=="Invalid"){
            this.invalid=true;
          }
-         else{
-           
-           if(res.messege=="User"){
-             console.log("called user");
-             this.tokenService.saveUser({username:res.username,role:"User"});
-             console.log(this.tokenService.isAuthenticated);
-             console.log(this.tokenService.getUser);
-             this.router.navigate(['/user']);
+         else{           
+           if(res.messege=="User"){            
+             this.tokenService.saveUser({username:res.username,role:"User"});   
+             this.router.navigate(["/user"])      ;    
             }
            if(res.messege=="Admin"){
-             this.router.navigate(['/Admin']);
-             console.log("called admin");
+             this.router.navigate(['/Admin']);             
             }
          }
         },
@@ -67,7 +52,16 @@ export class LoginComponent implements OnInit {
     }
     else{
       this.invalid=true;
-      this.invalidCaptcha=true;
+      if(this.LoginForm.value.captcha!=""){
+        this.invalidCaptcha=true;
+      }
     }
   }
+
+  captcha(){
+    this.first=Math.floor(Math.random() * (25 + 1));
+    this.operator=String(this.operations[Math.floor(Math.random() * this.operations.length)]);
+    this.second=Math.floor(Math.random() * (10 + 1));
+  }
+  
 }

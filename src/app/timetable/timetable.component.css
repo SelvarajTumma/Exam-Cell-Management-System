@@ -1,0 +1,31 @@
+.selection{
+    max-width: 500px;
+    height: 300px;
+    margin:20px auto;
+    padding: 0%;
+    text-align: center;
+}
+.static{
+    width: 95%;
+    margin-left: 10px;
+}
+.submit{
+    align-self: center;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+    -moz-appearance: textfield;
+}
+.timetable{
+    max-width: 600px;
+    height: fit-content;
+    margin: 0 auto;
+    text-align: center;
+}
+.timetable .mat-form-field{
+    display: block;
+}
