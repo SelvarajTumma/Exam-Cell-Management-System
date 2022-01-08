@@ -25,6 +25,15 @@ export class ExamSystemService {
     return this.http.post(baseurl+`/getSubjects`,{data});
   }
   set_timetable(timetable){
-    return this.http.post(baseurl+`/set_timetable`,{year:timetable.year,month:timetable.month,subjects:timetable.subjects.subjectsArray});
+    return this.http.post(baseurl+`/set_timetable`,{Regulation:timetable.Regulation,Dept:timetable.Dept,Semester:timetable.Semester,year:timetable.year,subjects:timetable.subjects,month:timetable.month});
+  }
+  get_timetable(fetch_timetable){
+    return this.http.post(baseurl+"/get_timetable",{fetch_timetable});
+  }
+  edit_Timetable(updated_timetable,key){
+    return this.http.post(baseurl+'/update_timetable',{updated_timetable,key});
+  }
+  delete_timetable(id){
+    return this.http.get(baseurl+`/delete_timetable/?${id}`);
   }
 }

@@ -1,7 +1,6 @@
 <mat-card class="selection">
-    <form [formGroup]="timetable" (ngSubmit)="Submit()">
+    <form [formGroup]="fetch_timetable" (ngSubmit)="fetch_Timetable(fetch_timetable.value)">
         <mat-form-field class="static">
-             <!-- (selectionChange)="depts()"  -->
            <mat-label>Regulation</mat-label>
            <mat-select formControlName="Regulation">
                <mat-option *ngFor="let reg of regulation" [value]="reg">{{reg}}</mat-option>
@@ -19,13 +18,25 @@
                 <mat-option *ngFor="let item of semester" [value]="item">{{item}}</mat-option>
             </mat-select>
         </mat-form-field>
+        <mat-form-field class="static">
+            <mat-label>Enter the year of conduction of exam</mat-label>
+            <input type="text" matInput formControlName="year" placeholder="enter the year" maxlength="4">
+            <mat-error>Enter the valid year</mat-error>
+        </mat-form-field>
+        <mat-form-field class="static">
+            <mat-label>Enter month</mat-label>
+            <mat-select multiple formControlName="month" >
+                <mat-option *ngFor="let month of months" [value]="month" name="month">{{month}}</mat-option>
+            </mat-select>
+        </mat-form-field>
         <button mat-raised-button type="submit" color="primary" class="submit">Get</button><br>
         <h3 *ngIf="Exception">There no AI department in R19 regulation</h3>
-    </form>   
+    </form>
 </mat-card>
-<!-- <mat-card class="timetable" *ngIf="Showsubjects" (ngSubmit)="submit(schedule.value)">
-    <form [formGroup]="schedule">
-        <h3>Set Timetable</h3>
+
+<mat-card *ngIf="showTimetable" class="updated_timetable" (ngSubmit)="edit_Timetable(edit_timetable.value)">
+    <form [formGroup]="edit_timetable">
+        <h3>Edit Timetable</h3>
         <mat-form-field>
             <mat-label>Enter the year of conduction of exam</mat-label>
             <input type="text" matInput formControlName="year" placeholder="enter the year" maxlength="4">
@@ -39,7 +50,7 @@
         </mat-form-field>
         <div formGroupName="subjects">
             <div formArrayName="subjectsArray">
-                <div *ngFor="let item of schedule.get('subjects.subjectsArray').controls;let i=index">
+                <div *ngFor="let item of edit_timetable.get('subjects.subjectsArray').controls;let i=index">
                     <div [formGroupName]="i">
                         <mat-form-field class="full-width-input">
                             <mat-label>Subject code</mat-label>
@@ -52,6 +63,7 @@
                         <mat-form-field class="full-width-input">
                             <mat-label>Enter the date of the conduction of exam</mat-label>
                             <input formControlName="date" type="text" matInput   placeholder="DD-MM-YYYY">
+                            <!-- (keydown)="disableDate()" -->
                             <mat-error>
                                 Enter a valid date in DD-MM-YYYY format
                             </mat-error>
@@ -60,51 +72,9 @@
                 </div>
             </div>
         </div>
-        <button mat-raised-button  color="primary" (click)="submit(schedule.value)">Submit</button>
-        <img src="../../assets/success.gif" *ngIf="submitted" class="success">
-        <h4 *ngIf="ressubmitted">There might be an error with the datebase try again .. (:</h4>
-    </form>
-</mat-card> -->
-
-
-<mat-card class="timetable" *ngIf="Showsubjects" (ngSubmit)="submit(schedule.value)">
-    <form [formGroup]="schedule">
-        <h3>Set Timetable</h3>
-        <mat-form-field>
-            <mat-label>Enter the year of conduction of exam</mat-label>
-            <input type="text" matInput formControlName="year" placeholder="enter the year" maxlength="4">
-            <mat-error>Enter the valid year</mat-error>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Enter month</mat-label>
-            <mat-select multiple formControlName="month" >
-                <mat-option *ngFor="let month of months" [value]="month" name="month">{{month}}</mat-option>
-            </mat-select>
-        </mat-form-field>
-        
-        <div formGroupName="subjects" *ngFor="let item of schedule.get('subjects').controls;let i=index">
-            <div [formGroupName]="i">
-                <mat-form-field class="full-width-input">
-                    <mat-label>Subject code</mat-label>
-                    <input formControlName="sub_code" readonly="readonly" matInput>
-                </mat-form-field>
-                <mat-form-field class="full-width-input">
-                    <mat-label>Subject name</mat-label>
-                    <input formControlName="sub_name" readonly="readonly" matInput>
-                </mat-form-field>
-                <mat-form-field class="full-width-input">
-                    <mat-label>Enter the date of the conduction of exam</mat-label>
-                    <input formControlName="date" type="text" matInput   placeholder="DD-MM-YYYY">
-                    <!-- (keydown)="disableDate()" -->
-                    <mat-error>
-                        Enter a valid date in DD-MM-YYYY format
-                    </mat-error>
-                </mat-form-field>
-            </div>
-        </div>
-            
-        <button mat-raised-button  color="primary" (click)="submit(schedule.value)">Submit</button>
-        <img src="../../assets/success.gif" *ngIf="submitted" class="success">
-        <h4 *ngIf="ressubmitted">There might be an error with the datebase try again .. (:</h4>
+        <button mat-raised-button  color="primary" (click)="edit_Timetable(edit_timetable.value)">Edit Timetable</button><br><br>
+        <button mat-raised-button color="primary" (click)="delete_TImetable()"><mat-icon>delete</mat-icon> Delete Timetable</button>
+        <h2 *ngIf="updatedTimetable">The Timetable has been updated</h2>
+        <h2 *ngIf="errorInupdation">There is an error in updation</h2>
     </form>
 </mat-card>

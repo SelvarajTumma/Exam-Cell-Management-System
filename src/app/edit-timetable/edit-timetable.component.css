@@ -1,6 +1,6 @@
 .selection{
     max-width: 500px;
-    height: 300px;
+    height: 400px;
     margin:20px auto;
     padding: 0%;
     text-align: center;
@@ -20,17 +20,12 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance: textfield;
 }
-.timetable{
+.updated_timetable{
     max-width: 600px;
     height: fit-content;
     margin: 0 auto;
     text-align: center;
 }
-.timetable .mat-form-field{
+.updated_timetable .mat-form-field{
     display: block;
-}
-.success{
-    width: 200px;
-    height: auto;
-    object-fit: contain;
 }

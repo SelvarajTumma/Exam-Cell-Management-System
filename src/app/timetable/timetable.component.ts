@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup ,FormBuilder,Validators,FormArray, FormControl} from '@angular/forms';
 import { ExamSystemService } from '../exam-system.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-timetable',
   templateUrl: './timetable.component.html',
@@ -22,18 +23,33 @@ export class TimetableComponent implements OnInit {
   Exception:boolean=false;
   Showsubjects:boolean=false;
   subjects:any;
-  constructor(private formBuilder:FormBuilder,private examsystemservice:ExamSystemService) {
+  Invalid_SUBJECTS="Subjects";
+  submitted:boolean=false;
+  ressubmitted:boolean=false
+  constructor(private formBuilder:FormBuilder,private examsystemservice:ExamSystemService,private router:Router) {
     this.timetable=this.formBuilder.group({
       Regulation:["",Validators.required],
       Dept:["",Validators.required],
-      Semester:["",Validators.required]
+      Semester:["",Validators.required],
     });
+    // this.schedule=formBuilder.group({
+    //   Regulation:[""],
+    //   Dept:[""],
+    //   Semester:[""],
+    //   year:["",Validators.required],
+    //   month:new FormControl("",[Validators.required]),
+    //   subjects:formBuilder.group({
+    //     subjectsArray:formBuilder.array([])
+    //   }),
+    // }); 
+
     this.schedule=formBuilder.group({
+      Regulation:[""],
+      Dept:[""],
+      Semester:[""],
       year:["",Validators.required],
       month:new FormControl("",[Validators.required]),
-      subjects:formBuilder.group({
-        subjectsArray:this.formBuilder.array([],Validators.required)
-      }),
+      subjects:formBuilder.array([])
     }); 
   }
   
@@ -50,9 +66,25 @@ export class TimetableComponent implements OnInit {
         this.examsystemservice.getsubjects(this.timetable.value).subscribe(
           (res:any)=>{
             console.log(res);
+            this.subjects={};
+            // if(this.Showsubjects=true){
+            //   this.subjects={};
+            //   this.subjects=res.subjects;
+            //   this.patch();
+            //   this.Showsubjects=false;
+            //   this.Showsubjects=true;
+            // }
             this.subjects=res.Subjects;
             this.patch();
             this.Showsubjects=true;
+            // this.schedule.value.Regulation+=this.timetable.value.Regulation;
+            // this.schedule.value.Dept+=this.timetable.value.Dept;
+            // this.schedule.value.Semester+=this.timetable.value.Semester;
+            this.schedule.patchValue({
+              Regulation:this.timetable.value.Regulation,
+              Dept:this.timetable.value.Dept,
+              Semester:this.timetable.value.Semester
+            })
             console.log(this.subjects);
             console.log(this.schedule.value);
           },
@@ -73,37 +105,55 @@ export class TimetableComponent implements OnInit {
     console.log(this.schedule.value);
     console.log(value);
     console.log(this.schedule.valid);
-    
+    if(this.schedule.valid){
+      console.log("called");
       this.examsystemservice.set_timetable(this.schedule.value).subscribe(
-        (res)=>{
-          console.log(res);
-        },
-        (err)=>{
-          console.log(err);
-        }
+        (res:any)=>{
+          if(res.messege="Sccessful"){
+            this.submitted=true;
+            this.Showsubjects=false;
+            this.schedule.reset;
+            console.log(this.schedule.value);
+          }
+          else{
+            this.ressubmitted =true;
+          } 
+          },
+          (err)=>{
+            console.log(err);
+          }
       )
-    
+    } 
   }
+  // patch(){
+  //   console.log("called");
+  //   const control=<FormArray>this.schedule.get('subjects.subjectsArray');
+  //   this.subjects.forEach(element => {
+  //     control.push(this.patchValues(element.sub_code,element.sub_name,element.date));
+  //   });
+  //   console.log(this.schedule.value);
+  // }
+
   patch(){
     console.log("called");
-    const control=<FormArray>this.schedule.get('subjects.subjectsArray');
+    const control=<FormArray>this.schedule.get('subjects');
     this.subjects.forEach(element => {
-      control.push(this.patchValues(element.sub_code,element.sub_name));
+      control.push(this.patchValues(element.sub_code,element.sub_name,element.date));
     });
     console.log(this.schedule.value);
   }
-  patchValues(sub_code,sub_name){
+  patchValues(sub_code,sub_name,date){
     return this.formBuilder.group(
       {
         sub_code:[sub_code],
         sub_name:[sub_name],
-        date:this.formBuilder.control("",Validators.required) 
+        date:[date,[Validators.pattern(/^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/)]]
       }
     )
   }
-  // disableDate(){
-  //   return false;
-  // }
+  
 }
+
+
 
 

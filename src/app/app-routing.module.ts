@@ -9,6 +9,8 @@ import { MarksComponent } from './marks/marks.component';
 import { PayFeeComponent } from './pay-fee/pay-fee.component';
 import { AuthService } from './auth.service';
 import { TimetableComponent } from './timetable/timetable.component';
+import { EditTimetableComponent } from './edit-timetable/edit-timetable.component';
+import { PaidListComponent } from './paid-list/paid-list.component';
 const routes: Routes = [
   {path:"",pathMatch:"full",component:LoginComponent},
   {path:"login",component:LoginComponent},
@@ -21,7 +23,13 @@ const routes: Routes = [
   ],canActivate:[AuthService]},
   {path:"Admin",component:AdminViewComponent,children:[
     {path:"",component:TimetableComponent,pathMatch:"full"},
-    {path:"Home",component:TimetableComponent}
+    {path:"Set-Timetable",component:TimetableComponent},
+    {
+      path:"Edit-Timetable",component:EditTimetableComponent
+    },
+    {
+      path:"paidList",component:PaidListComponent
+    }
   ]},
   
 ];
