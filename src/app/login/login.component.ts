@@ -28,33 +28,41 @@ export class LoginComponent implements OnInit {
   }
   Submit(){
     console.log("called");  
-    if(this.LoginForm.value.captcha==eval(this.first+this.operator+this.second)){
-      this.examsystem.login(this.LoginForm.value).subscribe(
-        (res:any)=>{
-          console.log(res);
-         if(res.messege=="Invalid"){
-           this.invalid=true;
-         }
-         else{           
-           if(res.messege=="User"){            
-             this.tokenService.saveUser({username:res.username,role:"User"});   
-             this.router.navigate(["/user"])      ;    
-            }
-           if(res.messege=="Admin"){
-             this.router.navigate(['/Admin']);             
-            }
-         }
-        },
-        (err)=>{
-          console.log(err);
+    if(this.LoginForm.valid){
+      if(this.LoginForm.value.captcha==eval(this.first+this.operator+this.second)){
+        this.examsystem.login(this.LoginForm.value).subscribe(
+          (res:any)=>{
+            console.log(res);
+           if(res.messege=="Invalid"){
+             this.invalid=true;
+             this.captcha();
+           }
+           else{           
+             if(res.messege=="User"){            
+               this.tokenService.saveUser({username:res.username,role:"User"});   
+               this.router.navigate(["/user"])      ;    
+              }
+             if(res.messege=="Admin"){
+               this.tokenService.saveUser({username:res.username,role:"admin"});
+               this.router.navigate(['/Admin']);     
+               console.log("called")        
+              }
+           }
+          },
+          (err)=>{
+            console.log(err);
+          }
+        )
+      }
+      else{
+        if(this.LoginForm.value.captcha!=""){
+          this.invalidCaptcha=true;
+          this.captcha();
         }
-      )
+      }
     }
     else{
-      this.invalid=true;
-      if(this.LoginForm.value.captcha!=""){
-        this.invalidCaptcha=true;
-      }
+      this.invalid=false;
     }
   }
 

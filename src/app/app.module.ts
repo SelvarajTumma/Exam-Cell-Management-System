@@ -22,7 +22,6 @@ import { PayFeeComponent } from './pay-fee/pay-fee.component';
 import { MarksComponent } from './marks/marks.component';
 import { TimetableComponent } from './timetable/timetable.component';
 import {MatSelectModule,MatOptionModule,MatFormFieldModule} from '@angular/material';
-import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { EditTimetableComponent } from './edit-timetable/edit-timetable.component';
 import { PaidListComponent } from './paid-list/paid-list.component';
 @NgModule({
@@ -57,7 +56,7 @@ import { PaidListComponent } from './paid-list/paid-list.component';
     MatSelectModule,    
     MatOptionModule,
     MatFormFieldModule,
-    NgMultiSelectDropDownModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

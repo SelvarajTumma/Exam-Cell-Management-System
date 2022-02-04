@@ -36,12 +36,16 @@ export class EditTimetableComponent implements OnInit {
     this.edit_timetable=this.formBuilder.group({
       year:["",Validators.required],
       month:new FormControl("",[Validators.required]),
-      subjects:formBuilder.group({
-        subjectsArray:formBuilder.array([])
-      }),
+      subjects:formBuilder.array([])
     })
   }
   ngOnInit() {
+    this.edit_timetable.setValue({
+      month:[],
+      subjects:[],
+      year:""
+    });
+    console.log(this.edit_timetable.value)
   }
   fetch_Timetable(details:any){
     console.log(this.fetch_timetable.value);
@@ -53,15 +57,21 @@ export class EditTimetableComponent implements OnInit {
         this.examsystemservice.get_timetable(this.fetch_timetable.value).subscribe(
           (res:any)=>{
             console.log(res);
-            console.log(res[0].Regulation);
+            console.log(res.Regulation);
+            this.edit_timetable.setValue({
+              month:[],
+              subjects:[],
+              year:""
+            })
+            console.log(this.edit_timetable.value)
             this.edit_timetable.patchValue({
-              year:res[0].year,
-              month:res[0].month
+              year:res.year,
+              month:res.month
             });
-            this.subjects=res[0].subjects.subjectsArray;
+            this.subjects=res.subjects;
             this.patch();
             this.showTimetable=true;
-            this.key=res[0]._id;
+            this.key=res._id;
             console.log(this.key)
           },
           (err)=>{
@@ -79,10 +89,15 @@ export class EditTimetableComponent implements OnInit {
       this.examsystemservice.edit_Timetable(this.edit_timetable.value,this.key).subscribe(
         (res:any)=>{
           console.log(res);
-          if(res.messege=="sccess"){
+          if(res.messege=="updated"){
             this.updatedTimetable=true;
             this.showTimetable=false;
-            this.edit_timetable.reset;
+            this.edit_timetable.setValue({
+              year:"",
+              month:[],
+              subjects:[]
+            });    
+            console.log(this.edit_timetable.value)
             this.key="";
           }
           if(res.messege=="Error"){
@@ -98,10 +113,14 @@ export class EditTimetableComponent implements OnInit {
   delete_TImetable(){
     this.examsystemservice.delete_timetable(this.key).subscribe(
       (res:any)=>{
-        if(res.messege=="Success"){
+        if(res.messege=="deleted"){
           this.showTimetable=false;
+          this.edit_timetable.setValue({
+            month:[],
+            subjects:[],
+            year:""
+          })
           this.key="";
-          this.edit_timetable.reset;
         }
       },
       (err)=>{
@@ -111,7 +130,7 @@ export class EditTimetableComponent implements OnInit {
   }
   patch(){
     console.log("called");
-    const control=<FormArray>this.edit_timetable.get('subjects.subjectsArray');
+    const control=<FormArray>this.edit_timetable.get('subjects');
     this.subjects.forEach(element => {
       control.push(this.patchValues(element.sub_code,element.sub_name,element.date));
     });

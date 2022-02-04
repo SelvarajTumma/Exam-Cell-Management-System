@@ -34,6 +34,28 @@ export class ExamSystemService {
     return this.http.post(baseurl+'/update_timetable',{updated_timetable,key});
   }
   delete_timetable(id){
-    return this.http.get(baseurl+`/delete_timetable/?${id}`);
+    return this.http.get(baseurl+`/Delete/${id}`);
+  }
+  getFees(number:number){
+    return this.http.get(baseurl+`/fees/${number}`);
+  }
+  payFees(details:any){
+    return this.http.post(baseurl+"/ExamFees",{
+      username:details.username,
+      Regulation:details.Regulation,
+      Semester:details.Semester,
+      Department:details.Department,
+      Fees:details.Fees,
+      subjects:details.subjects
+    })
+  }
+  paidlist(data:any){
+    return this.http.post(baseurl+"/paidList",{username:data.RollNo,semester:data.Semester});
+  }
+  paidlistus(username:String){
+    return this.http.get(baseurl+`/paidList/${username}`);
+  }
+  getCollege(){
+    return this.http.get(baseurl+"/collegeDetails");
   }
 }

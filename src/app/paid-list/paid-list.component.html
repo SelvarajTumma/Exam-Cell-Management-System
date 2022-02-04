@@ -1,1 +1,36 @@
-<p>paid-list works!</p>
+<mat-card class="selection">
+    <form [formGroup]="paidList" (ngSubmit)="Submit()">
+        <br>
+        <mat-form-field class="static">
+            <mat-label>Roll No</mat-label>
+            <input type="text" formControlName="RollNo" matInput>
+        </mat-form-field>
+        <mat-form-field class="static">
+            <mat-label>Semester</mat-label>
+            <mat-select formControlName="Semester">
+                <mat-option *ngFor="let item of semester" [value]="item">{{item}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button mat-raised-button type="submit" color="primary" class="submit">Get</button><br>
+        <h3 *ngIf="Exception" class="excep">Please fill username also</h3><br>
+    </form>   
+</mat-card>
+
+
+<mat-card *ngIf="loaduser" class="user"><br>
+    <h3>Roll No : {{user.username}}</h3>
+    <h3>Regulation : {{user.Regulation}}</h3>
+    <h3>Semester : {{user.semester}}</h3>
+    <h3>Department : {{user.Department}}</h3>
+    <h3>Fees : {{user.Fees}}</h3><br>
+</mat-card>
+
+<mat-card *ngIf="loadlist">
+    <div *ngFor="let user of list">
+        <h3>Roll No : {{user.username}}</h3>
+        <h3>Regulation : {{user.Regulation}}</h3>
+        <h3>Semester : {{user.semester}}</h3>
+        <h3>Department : {{user.Department}}</h3>
+        <h3>Fees : {{user.Fees}}</h3><hr>
+    </div>
+</mat-card>

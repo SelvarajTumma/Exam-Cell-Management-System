@@ -66,20 +66,19 @@ export class TimetableComponent implements OnInit {
         this.examsystemservice.getsubjects(this.timetable.value).subscribe(
           (res:any)=>{
             console.log(res);
-            this.subjects={};
-            // if(this.Showsubjects=true){
-            //   this.subjects={};
-            //   this.subjects=res.subjects;
-            //   this.patch();
-            //   this.Showsubjects=false;
-            //   this.Showsubjects=true;
-            // }
+            this.subjects=={};
+            this.schedule.patchValue({
+              Regulation:"",
+              Dept:"",
+              Semester:"",
+              year:"",
+              month:[],
+              subjects:[]
+            });
+            this.pop();
             this.subjects=res.Subjects;
             this.patch();
             this.Showsubjects=true;
-            // this.schedule.value.Regulation+=this.timetable.value.Regulation;
-            // this.schedule.value.Dept+=this.timetable.value.Dept;
-            // this.schedule.value.Semester+=this.timetable.value.Semester;
             this.schedule.patchValue({
               Regulation:this.timetable.value.Regulation,
               Dept:this.timetable.value.Dept,
@@ -95,14 +94,12 @@ export class TimetableComponent implements OnInit {
       }
     }
     else{
-      throw console.error("please fill the form completely");
-      //this.timetable.valid=false;
-      
+      throw console.error("please fill the form completely");      
     }
   }
   submit(value){
     console.log("caleed");
-    console.log(this.schedule.value);
+    console.log(this.schedule.value.subjects.length);
     console.log(value);
     console.log(this.schedule.valid);
     if(this.schedule.valid){
@@ -112,7 +109,14 @@ export class TimetableComponent implements OnInit {
           if(res.messege="Sccessful"){
             this.submitted=true;
             this.Showsubjects=false;
-            this.schedule.reset;
+            this.schedule.patchValue({
+              Regulation:"",
+              Dept:"",
+              Semester:"",
+              year:"",
+              month:[],
+            });
+            this.pop();         
             console.log(this.schedule.value);
           }
           else{
@@ -125,18 +129,14 @@ export class TimetableComponent implements OnInit {
       )
     } 
   }
-  // patch(){
-  //   console.log("called");
-  //   const control=<FormArray>this.schedule.get('subjects.subjectsArray');
-  //   this.subjects.forEach(element => {
-  //     control.push(this.patchValues(element.sub_code,element.sub_name,element.date));
-  //   });
-  //   console.log(this.schedule.value);
-  // }
-
+  pop(){
+    const control=<FormArray>this.schedule.controls['subjects'];
+    control.clear();
+  }
   patch(){
     console.log("called");
     const control=<FormArray>this.schedule.get('subjects');
+    console.log(control.value);
     this.subjects.forEach(element => {
       control.push(this.patchValues(element.sub_code,element.sub_name,element.date));
     });

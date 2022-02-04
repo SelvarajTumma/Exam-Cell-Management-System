@@ -12,7 +12,7 @@ import { TimetableComponent } from './timetable/timetable.component';
 import { EditTimetableComponent } from './edit-timetable/edit-timetable.component';
 import { PaidListComponent } from './paid-list/paid-list.component';
 const routes: Routes = [
-  {path:"",pathMatch:"full",component:LoginComponent},
+  {path:"",pathMatch:"full",redirectTo:"login"},
   {path:"login",component:LoginComponent},
   {path:"user",component:UserViewComponent,children:[
     {path:"StudInfo",component:StudentInfoComponent},
@@ -30,7 +30,7 @@ const routes: Routes = [
     {
       path:"paidList",component:PaidListComponent
     }
-  ]},
+  ],canActivate:[AuthService]},
   
 ];
 

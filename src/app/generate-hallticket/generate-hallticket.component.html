@@ -1,1 +1,16 @@
-<p>generate-hallticket works!</p>
+<mat-card class="selection">
+    <form [formGroup]="Hallticket" (ngSubmit)="Submit()">
+        <br>
+        <mat-form-field class="static">
+            <mat-label>Roll No</mat-label>
+            <input type="text" formControlName="RollNo" matInput>
+        </mat-form-field>
+        <mat-form-field class="static">
+            <mat-label>Semester</mat-label>
+            <mat-select formControlName="Semester">
+                <mat-option *ngFor="let item of semester" [value]="item">{{item}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button mat-raised-button type="submit" color="primary" class="submit">Get</button><br>
+    </form>   
+</mat-card>

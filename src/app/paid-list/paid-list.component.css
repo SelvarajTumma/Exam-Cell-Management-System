@@ -1,0 +1,33 @@
+.selection{
+    max-width: 500px;
+    height: auto;
+    margin:20px auto;
+    padding: 0%;
+    text-align: center;
+}
+.static{
+    width: 95%;
+    margin-top: 3px;
+    margin-left: 10px;
+}
+.submit{
+    align-self: center;
+}
+.excep{
+    color: red;
+}
+/* input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+    -moz-appearance: textfield;
+} */
+.user{
+    max-width: 500px;
+    height: auto;
+    margin: 20px auto;
+    padding: 0%;
+    text-align: center;
+}

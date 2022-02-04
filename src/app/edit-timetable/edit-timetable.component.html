@@ -48,32 +48,29 @@
                 <mat-option *ngFor="let month of months" [value]="month" name="month">{{month}}</mat-option>
             </mat-select>
         </mat-form-field>
-        <div formGroupName="subjects">
-            <div formArrayName="subjectsArray">
-                <div *ngFor="let item of edit_timetable.get('subjects.subjectsArray').controls;let i=index">
-                    <div [formGroupName]="i">
-                        <mat-form-field class="full-width-input">
-                            <mat-label>Subject code</mat-label>
-                            <input formControlName="sub_code" readonly="readonly" matInput>
-                        </mat-form-field>
-                        <mat-form-field class="full-width-input">
-                            <mat-label>Subject name</mat-label>
-                            <input formControlName="sub_name" readonly="readonly" matInput>
-                        </mat-form-field>
-                        <mat-form-field class="full-width-input">
-                            <mat-label>Enter the date of the conduction of exam</mat-label>
-                            <input formControlName="date" type="text" matInput   placeholder="DD-MM-YYYY">
-                            <!-- (keydown)="disableDate()" -->
-                            <mat-error>
-                                Enter a valid date in DD-MM-YYYY format
-                            </mat-error>
-                        </mat-form-field>
-                    </div>
-                </div>
+        <div formGroupName="subjects" *ngFor="let item of edit_timetable.get('subjects').controls;let i=index">
+            <div [formGroupName]="i">
+                <mat-form-field class="full-width-input">
+                    <mat-label>Subject code</mat-label>
+                    <input formControlName="sub_code" readonly="readonly" matInput>
+                </mat-form-field>
+                <mat-form-field class="full-width-input">
+                    <mat-label>Subject name</mat-label>
+                    <input formControlName="sub_name" readonly="readonly" matInput>
+                </mat-form-field>
+                <mat-form-field class="full-width-input">
+                    <mat-label>Enter the date of the conduction of exam</mat-label>
+                    <input formControlName="date" type="text" matInput   placeholder="DD-MM-YYYY">
+                    <!-- (keydown)="disableDate()" -->
+                    <mat-error>
+                        Enter a valid date in DD-MM-YYYY format
+                    </mat-error>
+                </mat-form-field>
             </div>
-        </div>
+        </div>    
         <button mat-raised-button  color="primary" (click)="edit_Timetable(edit_timetable.value)">Edit Timetable</button><br><br>
         <button mat-raised-button color="primary" (click)="delete_TImetable()"><mat-icon>delete</mat-icon> Delete Timetable</button>
+        <h4>{{edit_timetable.value |json}}</h4>
         <h2 *ngIf="updatedTimetable">The Timetable has been updated</h2>
         <h2 *ngIf="errorInupdation">There is an error in updation</h2>
     </form>
