@@ -1,0 +1,26 @@
+.selection{
+    max-width: 500px;
+    height: 200px;
+    margin:20px auto;
+    padding: 0%;
+    text-align: center;
+}
+.static{
+    width: 95%;
+    margin-top: 3px;
+    margin-left: 10px;
+}
+.submit{
+    align-self: center;
+}
+.marks{
+    width: 500px;
+    height: max-content;
+    margin: 2px auto;
+    padding: 0;
+    text-align: center;
+}
+.marks table{
+    width:90%;
+    margin-left: 20px;
+}

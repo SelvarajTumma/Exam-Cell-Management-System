@@ -1,1 +1,35 @@
-<p>marks works!</p>
+<mat-card class="selection">
+    <form [formGroup]="query" (ngSubmit)="get()">
+        <br>
+        <mat-form-field class="static">
+            <mat-label>Roll No</mat-label>
+            <input type="text" formControlName="RollNo" matInput readonly>
+        </mat-form-field>
+        <mat-form-field class="static">
+            <mat-label>Semester</mat-label>
+            <mat-select formControlName="semester">
+                <mat-option *ngFor="let item of semester" [value]="item">{{item}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button mat-raised-button type="submit" color="primary" class="submit">Get</button><br>
+    </form>   
+</mat-card>
+
+<mat-card *ngIf="load" class="marks" cell-spacing ="10px"><br>
+    <h3>Marks Details</h3>
+    <table border="1">
+        <tr>
+            <td>Subject name</td>
+            <td>Subject code</td>
+            <td>Date of conduction</td>
+            <td>Marks</td>
+        </tr>
+        <tr *ngFor="let mark of marks" >
+            <td>{{mark.sub_name}}</td>
+            <td>{{mark.sub_name}}</td>
+            <td>{{mark.date}}</td>
+            <td>{{mark.marks}}</td>
+        </tr>
+        
+    </table>
+</mat-card>

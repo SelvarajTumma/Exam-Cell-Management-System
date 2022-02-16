@@ -49,7 +49,7 @@
             <td>{{subject.date}}</td>
         </tr>
       </table><br>
-      <button (click)="fees(subjects.length)" mat-raised-button color="primary">Submit fee details</button>
+      <button (click)="fees(subjects.length)" mat-raised-button color="primary">Get fee details</button>
       <h3 *ngIf="loadFee">Fees : {{Fees}}</h3>
 <button (click)="payFee()" mat-raised-button color="primary" *ngIf="loadFee">Pay Fees</button>
 </mat-card>

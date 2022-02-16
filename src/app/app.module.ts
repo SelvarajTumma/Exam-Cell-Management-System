@@ -24,6 +24,8 @@ import { TimetableComponent } from './timetable/timetable.component';
 import {MatSelectModule,MatOptionModule,MatFormFieldModule} from '@angular/material';
 import { EditTimetableComponent } from './edit-timetable/edit-timetable.component';
 import { PaidListComponent } from './paid-list/paid-list.component';
+import { SetMarksComponent } from './set-marks/set-marks.component';
+import { EditMarksComponent } from './edit-marks/edit-marks.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +40,8 @@ import { PaidListComponent } from './paid-list/paid-list.component';
     TimetableComponent,
     EditTimetableComponent,
     PaidListComponent,
+    SetMarksComponent,
+    EditMarksComponent,
   ],
   imports: [
     BrowserModule,

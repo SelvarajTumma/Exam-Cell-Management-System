@@ -14,3 +14,31 @@
         <button mat-raised-button type="submit" color="primary" class="submit">Get</button><br>
     </form>   
 </mat-card>
+
+<mat-card *ngIf="load" class="hallticket">
+    <div >        
+        <h2 class="name"><b>{{cDetails.college_name}}</b></h2>
+        
+        <span>{{cDetails.address}}</span><br>
+        <span>Phone :{{cDetails.phone}}  Website:{{cDetails.website}} Email:{{cDetails.email}}</span>
+    </div><br>
+    <div>
+        <span><b>Hall Ticket No: {{ticket.username}}</b></span><br>
+        <span>Department {{ticket.Department}}</span><br>
+        <span>Regulation: {{ticket.Regulation}}</span><br>
+        <table border="2">
+            <tr>
+                <th>Sno</th>
+                <th>Date</th>
+                <th>Subject Nmae</th>
+                <th>Subject Code</th>
+            </tr>
+            <tr *ngFor="let table of ticket.subjects,let i=index">
+                <td>{{i+1}}</td>
+                <td>{{table.date}}</td>
+                <td>{{table.sub_name}}</td>
+                <td>{{table.sub_code}}</td>
+            </tr>
+        </table>
+    </div>
+</mat-card>

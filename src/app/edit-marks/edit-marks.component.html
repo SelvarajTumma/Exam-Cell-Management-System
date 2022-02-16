@@ -1,0 +1,67 @@
+<mat-card class="selection">
+    <form [formGroup]="query" (ngSubmit)="get()">
+        <br>
+        <mat-form-field class="static">
+            <mat-label>Roll No</mat-label>
+            <input type="text" formControlName="RollNo" matInput>
+        </mat-form-field>
+        <mat-form-field class="static">
+            <mat-label>Semester</mat-label>
+            <mat-select formControlName="Semester">
+                <mat-option *ngFor="let item of semester" [value]="item">{{item}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button mat-raised-button type="submit" color="primary" class="submit">Get</button><br>
+    </form>   
+</mat-card>
+
+<mat-card class="marks" *ngIf="load">
+   <form [formGroup]="Editmarks" (ngSubmit)="EDITmarks()">
+    <mat-form-field class="static">
+        <mat-label>Roll No</mat-label>
+        <input matInput type="text" readonly="readonly" formControlName="RollNo">
+    </mat-form-field>
+    <mat-form-field class="static">
+        <mat-label>Semester</mat-label>
+        <input matInput type="text" readonly="readonly" formControlName="semester">
+    </mat-form-field>
+    <mat-form-field class="static">
+        <mat-label>
+            Regulation
+        </mat-label>
+        <input matInput type="text" readonly="readonly" formControlName="Regulation">
+    </mat-form-field>
+    <mat-form-field class="static">
+        <mat-label>Department</mat-label>
+        <input matInput type="text" readonly="readonly" formControlName="Dept">
+    </mat-form-field>
+    <div formGroupName="subjects" *ngFor="let item of Editmarks.get('subjects').controls;let i=index">
+        <div [formGroupName]="i">
+            <mat-form-field class="full-width-input" class="static">
+                <mat-label>Subject code</mat-label>
+                <input formControlName="sub_code" readonly="readonly" matInput>
+            </mat-form-field>
+            <mat-form-field class="full-width-input" class="static">
+                <mat-label>Subject name</mat-label>
+                <input formControlName="sub_name" readonly="readonly" matInput>
+            </mat-form-field>
+            <mat-form-field class="full-width-input" class="static">
+                <mat-label>Enter the date of the conduction of exam</mat-label>
+                <input formControlName="date" type="text" matInput readonly=""readonly   placeholder="DD-MM-YYYY">
+                <mat-error>
+                    Enter a valid date in DD-MM-YYYY format
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="static">
+                <mat-label>Enter Marks</mat-label>
+                <input matInput type="text" formControlName="marks" min="0" max="100">
+                <mat-error>
+                    Enter the marks in between 0-100
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    <!-- <button mat-raised-button type="submit" color="primary" class="submit">Edit Marks</button><br><br> -->
+    <button mat-raised-button color="warn" (click)="delete()">Delete</button>    
+   </form>
+</mat-card>

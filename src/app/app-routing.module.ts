@@ -11,6 +11,8 @@ import { AuthService } from './auth.service';
 import { TimetableComponent } from './timetable/timetable.component';
 import { EditTimetableComponent } from './edit-timetable/edit-timetable.component';
 import { PaidListComponent } from './paid-list/paid-list.component';
+import { SetMarksComponent } from './set-marks/set-marks.component';
+import { EditMarksComponent } from './edit-marks/edit-marks.component';
 const routes: Routes = [
   {path:"",pathMatch:"full",redirectTo:"login"},
   {path:"login",component:LoginComponent},
@@ -29,6 +31,12 @@ const routes: Routes = [
     },
     {
       path:"paidList",component:PaidListComponent
+    }
+    ,{
+      path:"setMarks",component:SetMarksComponent
+    },
+    {
+      path:"EditMarks",component:EditMarksComponent
     }
   ],canActivate:[AuthService]},
   

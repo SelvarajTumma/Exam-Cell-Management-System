@@ -12,6 +12,7 @@ export class GenerateHallticketComponent implements OnInit {
   semester:any=[
     "1-1","1-2","2-1","2-2","3-1","3-2","4-1","4-2"
   ];
+  load:boolean;
   Hallticket:FormGroup;
   cDetails:any;
   constructor(private tokenservice:TokenService,private formBuilder:FormBuilder,private examsystemservice:ExamSystemService) { 
@@ -20,30 +21,36 @@ export class GenerateHallticketComponent implements OnInit {
       Semester:["",Validators.required]
     })
   }
-
+  ticket:any;
   ngOnInit() {
     this.username=this.tokenservice.getUser().username;
     console.log(this.username);
     this.Hallticket.patchValue({
       RollNo:this.username
-    })
+    });
+    this.load=false;
   }
   Submit(){
     if(this.cDetails==null || this.cDetails==undefined){
+     
       this.examsystemservice.getCollege().subscribe(
         (data)=>{
           console.log(data);
+          this.cDetails=data;
         },
         (err)=>{
           console.log(err);
         }
       )
+     
     }
     console.log(this.Hallticket.value);
     if(this.Hallticket.valid){
       this.examsystemservice.paidlist(this.Hallticket.value).subscribe(
         (res)=>{
           console.log(res);
+          this.load=true;
+          this.ticket=res;
         },
         (err)=>{
           console.log(err);

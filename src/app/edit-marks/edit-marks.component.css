@@ -14,17 +14,9 @@
     align-self: center;
 }
 
-.hallticket{
+.marks{
     margin: 10px auto;
-    width: 600px;
+    max-width: 500px;
     height: auto;
-    align-items: center;
-    line-height-step: 4px;
-}
-
-table{
-    width: 100%;
-}
-.name{
     text-align: center;
 }
