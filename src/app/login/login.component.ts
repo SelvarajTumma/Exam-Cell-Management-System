@@ -28,6 +28,8 @@ export class LoginComponent implements OnInit {
   }
   Submit(){
     console.log("called");  
+    this.invalid=false;
+    this.invalidCaptcha=false;
     if(this.LoginForm.valid){
       if(this.LoginForm.value.captcha==eval(this.first+this.operator+this.second)){
         this.examsystem.login(this.LoginForm.value).subscribe(
@@ -65,11 +67,9 @@ export class LoginComponent implements OnInit {
       this.invalid=false;
     }
   }
-
   captcha(){
     this.first=Math.floor(Math.random() * (25 + 1));
     this.operator=String(this.operations[Math.floor(Math.random() * this.operations.length)]);
     this.second=Math.floor(Math.random() * (10 + 1));
   }
-  
 }

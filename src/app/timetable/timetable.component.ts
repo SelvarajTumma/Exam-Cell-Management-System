@@ -42,7 +42,6 @@ export class TimetableComponent implements OnInit {
     //     subjectsArray:formBuilder.array([])
     //   }),
     // }); 
-
     this.schedule=formBuilder.group({
       Regulation:[""],
       Dept:[""],
@@ -52,12 +51,11 @@ export class TimetableComponent implements OnInit {
       subjects:formBuilder.array([])
     }); 
   }
-  
   ngOnInit() {
   }
-
   Submit(){
     console.log(this.timetable.value);
+    this.submitted=false;
     if(this.timetable.valid){
       if(this.timetable.value.Regulation=="R19" && this.timetable.value.Dept=="AI"){
         this.Exception=true;
@@ -151,7 +149,6 @@ export class TimetableComponent implements OnInit {
       }
     )
   }
-  
 }
 
 

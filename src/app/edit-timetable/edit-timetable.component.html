@@ -70,7 +70,6 @@
         </div>    
         <button mat-raised-button  color="primary" (click)="edit_Timetable(edit_timetable.value)">Edit Timetable</button><br><br>
         <button mat-raised-button color="primary" (click)="delete_TImetable()"><mat-icon>delete</mat-icon> Delete Timetable</button>
-        <h4>{{edit_timetable.value |json}}</h4>
         <h2 *ngIf="updatedTimetable">The Timetable has been updated</h2>
         <h2 *ngIf="errorInupdation">There is an error in updation</h2>
     </form>

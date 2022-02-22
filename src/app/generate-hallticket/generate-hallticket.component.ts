@@ -58,5 +58,4 @@ export class GenerateHallticketComponent implements OnInit {
       )
     }
   }
-
 }

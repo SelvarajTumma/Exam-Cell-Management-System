@@ -49,6 +49,8 @@ export class EditTimetableComponent implements OnInit {
   }
   fetch_Timetable(details:any){
     console.log(this.fetch_timetable.value);
+    this.updatedTimetable=false;
+    this.errorInupdation=false;
     if(this.fetch_timetable.valid){
       if(this.fetch_timetable.value.Regulation=="R19" && this.fetch_timetable.value.Dept=="AI"){
         this.Exception=true;
@@ -81,22 +83,25 @@ export class EditTimetableComponent implements OnInit {
       }
     }
   }
-
-
+  pop(){
+    const control=<FormArray>this.edit_timetable.controls['subjects'];
+    control.clear();
+  }
   edit_Timetable(data){
     console.log(this.edit_timetable.value);
     if(this.edit_timetable.valid){
       this.examsystemservice.edit_Timetable(this.edit_timetable.value,this.key).subscribe(
         (res:any)=>{
           console.log(res);
-          if(res.messege=="updated"){
+          if(res.message=="updated"){
             this.updatedTimetable=true;
             this.showTimetable=false;
-            this.edit_timetable.setValue({
+            this.edit_timetable.patchValue({
               year:"",
               month:[],
               subjects:[]
             });    
+            this.pop();
             console.log(this.edit_timetable.value)
             this.key="";
           }
@@ -113,8 +118,9 @@ export class EditTimetableComponent implements OnInit {
   delete_TImetable(){
     this.examsystemservice.delete_timetable(this.key).subscribe(
       (res:any)=>{
-        if(res.messege=="deleted"){
+        if(res.message=="deleted"){
           this.showTimetable=false;
+          this.pop();
           this.edit_timetable.setValue({
             month:[],
             subjects:[],

@@ -16,7 +16,7 @@ export class MarksComponent implements OnInit {
     this.query=formbuilder.group(
       {
         RollNo:["",Validators.required],
-        semester:["",Validators.required]
+        Semester:["",Validators.required]
       }
     )
    }

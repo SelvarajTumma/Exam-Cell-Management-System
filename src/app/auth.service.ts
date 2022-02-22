@@ -14,8 +14,7 @@ export class AuthService implements CanActivate{
       }
       return true; 
   }
-
-  }
+}
  
 
   

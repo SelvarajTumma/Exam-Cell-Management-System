@@ -3,11 +3,8 @@ import { HttpClient } from '@angular/common/http';
 const baseurl="http://localhost:8080/api";
 @Injectable({
   providedIn: 'root'
-  
 })
-
 export class ExamSystemService {
-  
   constructor(private http:HttpClient) { }
   login(data) {
     return this.http.post(baseurl+'/check',{
@@ -29,14 +26,7 @@ export class ExamSystemService {
     return this.http.post(baseurl+`/getSubjects`,{data});
   }
   set_timetable(timetable){
-    return this.http.post(baseurl+`/set_timetable`,{
-      Regulation:timetable.Regulation,
-      Dept:timetable.Dept,
-      Semester:timetable.Semester,
-      year:timetable.year,
-      subjects:timetable.subjects,
-      month:timetable.month
-    });
+    return this.http.post(baseurl+`/set_timetable`,{Regulation:timetable.Regulation,Dept:timetable.Dept,Semester:timetable.Semester,year:timetable.year,subjects:timetable.subjects,month:timetable.month});
   }
   get_timetable(fetch_timetable){
     return this.http.post(baseurl+"/get_timetable",{fetch_timetable});
@@ -51,21 +41,10 @@ export class ExamSystemService {
     return this.http.get(baseurl+`/fees/${number}`);
   }
   payFees(details:any){
-    return this.http.post(baseurl+"/ExamFees",{
-      username:details.username,
-      Regulation:details.Regulation,
-      Semester:details.Semester,
-      Department:details.Department,
-      Fees:details.Fees,
-      subjects:details.subjects
-    })
+    return this.http.post(baseurl+"/ExamFees",{username:details.username,Regulation:details.Regulation,Semester:details.Semester,Department:details.Department,Fees:details.Fees,subjects:details.subjects})
   }
   paidlist(data:any){
-    return this.http.post(baseurl+"/paidList",{
-      username:data.RollNo,
-      semester:data.Semester
-    }
-    );
+    return this.http.post(baseurl+"/paidList",{username:data.RollNo,semester:data.Semester});
   }
   paidlistus(username:String){
     return this.http.get(baseurl+`/paidList/${username}`);
@@ -74,17 +53,10 @@ export class ExamSystemService {
     return this.http.get(baseurl+"/collegeDetails");
   }
   setmarks(marks:any){
-    return this.http.post(baseurl+"/Marks",{
-      "RollNo":marks.RollNo,
-      "Regulation": marks.Regulation,
-      "Dept": marks.Dept,
-      "subjects": marks.subjects,
-      "semester": marks.semester
-    }
-    )
+    return this.http.post(baseurl+"/Marks",{"RollNo":marks.RollNo,"Regulation": marks.Regulation,"Dept": marks.Dept,"subjects": marks.subjects,"semester": marks.semester})
   }
   getmarks(data: any){
-    return this.http.post(baseurl+"/getMarks",{RollNo:data.RollNo,semester:data.semester})
+    return this.http.post(baseurl+"/getMarks",{RollNo:data.RollNo,semester:data.Semester})
   }
   Deletemarks(id:String){
     return this.http.delete(baseurl+`/DeleteRecord/${id}`)

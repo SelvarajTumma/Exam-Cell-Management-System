@@ -22,7 +22,6 @@ export class PaidListComponent implements OnInit {
       Semester:["",Validators.required],
     })
   }
-
   ngOnInit() {
     this.loadlist,this.Exception,this.loadlist=false;
   }

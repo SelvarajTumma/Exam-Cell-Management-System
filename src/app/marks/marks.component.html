@@ -7,7 +7,7 @@
         </mat-form-field>
         <mat-form-field class="static">
             <mat-label>Semester</mat-label>
-            <mat-select formControlName="semester">
+            <mat-select formControlName="Semester">
                 <mat-option *ngFor="let item of semester" [value]="item">{{item}}</mat-option>
             </mat-select>
         </mat-form-field>
@@ -26,10 +26,9 @@
         </tr>
         <tr *ngFor="let mark of marks" >
             <td>{{mark.sub_name}}</td>
-            <td>{{mark.sub_name}}</td>
+            <td>{{mark.sub_code}}</td>
             <td>{{mark.date}}</td>
             <td>{{mark.marks}}</td>
-        </tr>
-        
+        </tr>        
     </table>
 </mat-card>

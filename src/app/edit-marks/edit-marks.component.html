@@ -15,8 +15,9 @@
     </form>   
 </mat-card>
 
+<!-- (ngSubmit)="EDITmarks()" -->
 <mat-card class="marks" *ngIf="load">
-   <form [formGroup]="Editmarks" (ngSubmit)="EDITmarks()">
+   <form [formGroup]="Editmarks" >
     <mat-form-field class="static">
         <mat-label>Roll No</mat-label>
         <input matInput type="text" readonly="readonly" formControlName="RollNo">

@@ -81,8 +81,7 @@
             <mat-select multiple formControlName="month" >
                 <mat-option *ngFor="let month of months" [value]="month" name="month">{{month}}</mat-option>
             </mat-select>
-        </mat-form-field>
-        
+        </mat-form-field>       
         <div formGroupName="subjects" *ngFor="let item of schedule.get('subjects').controls;let i=index">
             <div [formGroupName]="i">
                 <mat-form-field class="full-width-input">
@@ -104,7 +103,7 @@
             </div>
         </div>
             
-        <button mat-raised-button  color="primary" (click)="submit(schedule.value)">Submit</button><br>
+        <button mat-raised-button  color="primary" (click)="submit(schedule.value)">Submit</button><br><br>
         <img src="../../assets/success.gif" *ngIf="submitted" class="success">
         <h4 *ngIf="ressubmitted">There might be an error with the datebase try again .. (:</h4>
     </form>
